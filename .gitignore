@@ -1,0 +1,13 @@
+build/
+out/
+
+*.exe
+*.o
+*.obj
+*.dll
+*.so
+*.dylib
+
+.vscode/
+.cache/
+CMakeCache.txt
