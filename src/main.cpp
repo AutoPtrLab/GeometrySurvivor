@@ -1,10 +1,11 @@
-#include <cstdio>
-#include "Library.h"
+
+#include "Game.h"
 
 int main(){
+    
+    SDL::init();
+    Game g;
+    g.init();
+    SDL::quit();
 
-
-    printf("hola mundo");
-    func();
-    return 0;
 }

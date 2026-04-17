@@ -11,18 +11,31 @@ set(APP_SRC
 #LIBRARY HEADERS
 
 set(LIB_HEADERS
-        include/Library.h
+        include/Game.h
+        include/SDL_wrapper.h
+        include/Vector2D.h
+        include/State.h
+        include/PlayingState.h
+        include/Components/Component.h
+        include/Components/TransformComponent.h
+        include/Components/ComponentsList.h
+        include/Entity.h
+        include/EntityManager.h
+
 )
 
 #LIBRARY SOURCES
 
 set(LIB_SRC
-        src/Library.cpp
+        src/Game.cpp
+        src/PlayingState.cpp
+        src/Components/TransformComponent.cpp
+        src/EntityManager.cpp
 
 )
 
 
-#-----------Library dependency---
+#-----------Library dependency---------#
 
 
 include(FetchContent)
@@ -34,6 +47,7 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(SDL2)
+
 
 
 add_library(Library)

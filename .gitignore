@@ -1,6 +1,7 @@
 build/
 out/
 
+
 *.exe
 *.o
 *.obj
@@ -11,3 +12,4 @@ out/
 .vscode/
 .cache/
 CMakeCache.txt
+NOTAS.txt
