@@ -41,6 +41,7 @@ struct Vector2D {
 
             return Vector2D{x*scalar,y*scalar};
         }
+        
         Vector2D& operator *= (float scalar){
             x*=scalar;
             y*=scalar;

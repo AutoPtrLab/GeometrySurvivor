@@ -36,6 +36,17 @@ Entity& EntityManager::addEntity(int depth){
 
 }
 
+Entity* EntityManager::getEntity(size_t ID){
+
+        auto it = entityPool.find(ID);
+        if(it != entityPool.end()){
+            return it->second.get();
+        }else{
+            return nullptr;
+        }
+        
+}
+
 void EntityManager::deleteEntity(size_t ID){
     
     auto it = entityPool.find(ID); // we make sure the ID exist
@@ -67,10 +78,10 @@ void EntityManager::update(float dt){
     garbageCollector();
 }
 
-void EntityManager::render(){
+void EntityManager::render(SDL::RendererPtr r){
 
     for(auto const &e: renderVec){
-        e->render();
+        e->render(r);
     }
     
 }

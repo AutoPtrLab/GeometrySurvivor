@@ -18,11 +18,11 @@ class EntityManager{
         Entity& addEntity(int depth);
         Entity& addEntity();
 
-        Entity* getEntity();
+        Entity* getEntity(size_t ID);
 
         void deleteEntity(size_t ID); 
         void garbageCollector();
 
         void update(float dt);
-        void render();
+        void render(SDL::RendererPtr r);
 };

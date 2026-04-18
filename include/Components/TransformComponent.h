@@ -12,7 +12,18 @@ class TransformComponent: public Component<TransformComponent>{
     public:
 
         TransformComponent(Vector2D initPos);
+
         void update(float dt) override;
 
 
+        Vector2D getPos()const{return pos;}
+        void setPos(Vector2D newPos) {pos=newPos;}
+
+        Vector2D getVel() const{return vel;}
+        void setVel(Vector2D newVel){vel=newVel;}
+
+        Vector2D getAccel() const{return accel;}
+        void setAccel(Vector2D newAccel){accel=newAccel;}
+
+        
 } ;

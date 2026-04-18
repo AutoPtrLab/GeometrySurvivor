@@ -1,5 +1,6 @@
 #pragma once
 #include <cstddef>
+#include "SDL_wrapper.h"
 
 using ComponentID = std::size_t; //alias for Component ID
 
@@ -14,7 +15,7 @@ class BaseComponent{
     public:
         virtual ~BaseComponent()=default;
         virtual void  update(float dt)=0;
-        virtual void render(){}//NOT obligatory for every component
+        virtual void render(SDL::RendererPtr r){}//NOT obligatory for every component, we dont use the alias here so we dont include "SDL_wrapper"
         virtual void init(){}//Use to aquire the components that your component needs
         virtual ComponentID getID() const = 0 ;
 };
@@ -26,7 +27,8 @@ template <typename T>//CRTP
 class Component:public BaseComponent{
 
     friend class Entity;
-    private:
+
+    protected:
         Entity* entity;//pointer to its own entity
     public: 
         

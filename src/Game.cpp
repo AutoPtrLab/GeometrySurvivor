@@ -12,9 +12,12 @@ void Game::init(){
     currentState=std::make_unique<PlayingState>([this](StateID id){ nextState=id;});
 
     Uint64 lastTime = SDL_GetPerformanceCounter();  
+
+    float accumulator = 0.0f;
+    constexpr float FIXED_DT=1.0f/(60.0f);
     
     while(running){
-        
+ 
         //polling events
         SDL::Event e;
 
@@ -29,9 +32,18 @@ void Game::init(){
         float dt = (float)(now - lastTime) / (float)SDL_GetPerformanceFrequency();
         lastTime = now;
         if (dt > 0.05f) dt = 0.05f; // delta Time clamp for lagspikes
+
+        accumulator += dt;
+        while (accumulator >= FIXED_DT) {
+            currentState->update(FIXED_DT);
+            accumulator -= FIXED_DT;
+        }
+       
+        //fps , may remove later
+        float fps = 1.0f / dt;
+        SDL_SetWindowTitle(window.get(), ("GeometrySurvivor | FPS: " + std::to_string(static_cast<int>(fps))).c_str());
+
         
-        
-        currentState->update(dt);
         updateState();
         currentState->render(renderer.get());
     }

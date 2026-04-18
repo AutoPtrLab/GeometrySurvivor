@@ -10,16 +10,18 @@
 //=============================================================
 
 //logical width and height
-constexpr int WIDTH=800; 
-constexpr int HEIGHT=600;
+constexpr int WIDTH=480; 
+constexpr int HEIGHT=270;
 
 //real window size
 constexpr int WIN_WIDTH=1280;
 constexpr int WIN_HEIGHT=720;
 
-constexpr Uint32 flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
+constexpr Uint32 Rendererflags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
 
 namespace SDL{
+
+    //---TYPEDEFS-----------
 
     //new object to make SDL objects memory safe
     using Window = std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)>;
@@ -31,7 +33,14 @@ namespace SDL{
     using TextPtr = SDL_Texture*; //observer
 
     using Rect =  SDL_Rect;
+    using FRect =  SDL_FRect;
     using Event = SDL_Event;
+
+    inline auto renderClear(RendererPtr r)        { return SDL_RenderClear(r); }
+    inline auto renderPresent(RendererPtr r)       { return SDL_RenderPresent(r); }
+    inline auto renderDrawRect(RendererPtr r,Rect rect){return SDL_RenderDrawRect(r, &rect); }
+    inline auto renderFillRect(RendererPtr r, Rect rect){return SDL_RenderFillRect(r,&rect); }
+    inline auto renderFillRectF(RendererPtr r, FRect rect){return SDL_RenderFillRectF(r,&rect); }
 
     inline void init(){
         if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
@@ -48,7 +57,7 @@ namespace SDL{
     }
     inline Window CreateWindow(){
         SDL_Window *w = SDL_CreateWindow("GEOMETRY SURVIVOR",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,WIN_WIDTH,WIN_HEIGHT,0);
-        SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
+        SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "2");
         if(!w){
             printf("Error trying to open the window\n");
             SDL_Quit();
@@ -60,9 +69,9 @@ namespace SDL{
     }
 
     inline Renderer CreateRenderer(const Window &w){
-        SDL_Renderer *r=SDL_CreateRenderer(w.get(),-1,flags);
+        SDL_Renderer *r=SDL_CreateRenderer(w.get(),-1,Rendererflags);
         SDL_RenderSetLogicalSize(r, WIDTH, HEIGHT);
-
+        SDL_SetRenderDrawBlendMode(r, SDL_BLENDMODE_BLEND); //active blendmode for transparency
         if(!r){
             printf("error trying to open the renderer\n");
             SDL_Quit();

@@ -15,11 +15,11 @@ class Entity{
 
         inline static size_t nextID=0;
 
-        size_t ID=-1;
+        size_t ID=0;
 
         bool active=true;
 
-        std::vector<std::unique_ptr<BaseComponent>> componentVec;//vector that hold the life cycle of out components
+        std::vector<std::unique_ptr<BaseComponent>> componentVec;//vector that hold the life cycle of our components
 
         std::array<BaseComponent*,MAX_COMPONENTS> componentContainer;//array that holds the raw pointers of the components and works as an observer
 
@@ -30,7 +30,7 @@ class Entity{
     public:
 
         Entity():ID(nextID++){};
-        Entity(int depth):ID(nextID),depth(depth){ID++;}
+        Entity(int depth):ID(nextID++),depth(depth){}
 
 
         ~Entity()=default;
@@ -54,8 +54,9 @@ class Entity{
         bool isActive() const{return active;}
         void destroy(){active=false;}
 
+        void init();
         void update(float dt);
-        void render();
+        void render(SDL::RendererPtr r);
         
 
           
@@ -65,6 +66,12 @@ class Entity{
 
 #include "Components/Component.h"
 
+inline void Entity::init(){
+    for(auto &c:componentVec){
+            c->init();
+    }
+}
+
 inline void Entity::update(float dt){
   for(auto &c:componentVec){//we iterate the vector because does not have any nullptr like de array and has adjacent-memory
             c->update(dt);
@@ -72,9 +79,9 @@ inline void Entity::update(float dt){
 
 }
 
-inline void Entity::render(){
+inline void Entity::render(SDL::RendererPtr r){
     for(const auto &c:componentVec){
-            c->render();   
+            c->render(r);   
     }
 }
 

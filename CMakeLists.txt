@@ -16,11 +16,16 @@ set(LIB_HEADERS
         include/Vector2D.h
         include/State.h
         include/PlayingState.h
+        include/Entity.h
+        include/EntityManager.h
+        #-------COMPONENTS---------
         include/Components/Component.h
         include/Components/TransformComponent.h
         include/Components/ComponentsList.h
-        include/Entity.h
-        include/EntityManager.h
+        include/Components/SimpleSpriteComponent.h
+        include/Components/ControllerComponent.h
+        include/Components/SimpleAIComponent.h
+        
 
 )
 
@@ -29,8 +34,12 @@ set(LIB_HEADERS
 set(LIB_SRC
         src/Game.cpp
         src/PlayingState.cpp
-        src/Components/TransformComponent.cpp
         src/EntityManager.cpp
+        #-----------COMPONENTS------
+        src/Components/TransformComponent.cpp
+        src/Components/SimpleSpriteComponent.cpp
+        src/Components/ControllerComponent.cpp
+        src/Components/SimpleAIComponent.cpp
 
 )
 

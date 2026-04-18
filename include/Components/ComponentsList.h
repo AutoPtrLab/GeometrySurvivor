@@ -1,2 +1,5 @@
 #include "Components/Component.h"
 #include "Components/TransformComponent.h"
+#include "Components/SimpleSpriteComponent.h"
+#include "Components/ControllerComponent.h"
+#include "Components/SimpleAIComponent.h"
