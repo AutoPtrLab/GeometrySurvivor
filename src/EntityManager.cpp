@@ -1,5 +1,6 @@
 #include "EntityManager.h"
 #include <algorithm>
+#include "Components/ColliderComponent.h"
 
 EntityManager::EntityManager(){
     entityPool.reserve(1000);

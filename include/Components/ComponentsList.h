@@ -3,3 +3,4 @@
 #include "Components/SimpleSpriteComponent.h"
 #include "Components/ControllerComponent.h"
 #include "Components/SimpleAIComponent.h"
+#include "Components/ColliderComponent.h"

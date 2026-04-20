@@ -25,4 +25,6 @@ class EntityManager{
 
         void update(float dt);
         void render(SDL::RendererPtr r);
+        
+        const std::vector<Entity*>& getUpdateVec(){return updateVec;}
 };

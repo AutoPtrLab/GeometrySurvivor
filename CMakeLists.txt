@@ -18,6 +18,7 @@ set(LIB_HEADERS
         include/PlayingState.h
         include/Entity.h
         include/EntityManager.h
+        include/ColliderManager.h
         #-------COMPONENTS---------
         include/Components/Component.h
         include/Components/TransformComponent.h
@@ -25,6 +26,7 @@ set(LIB_HEADERS
         include/Components/SimpleSpriteComponent.h
         include/Components/ControllerComponent.h
         include/Components/SimpleAIComponent.h
+        include/Components/ColliderComponent.h
         
 
 )
@@ -35,16 +37,18 @@ set(LIB_SRC
         src/Game.cpp
         src/PlayingState.cpp
         src/EntityManager.cpp
+        src/ColliderManager.cpp
         #-----------COMPONENTS------
         src/Components/TransformComponent.cpp
         src/Components/SimpleSpriteComponent.cpp
         src/Components/ControllerComponent.cpp
         src/Components/SimpleAIComponent.cpp
+        src/Components/ColliderComponent.cpp
 
 )
 
 
-#-----------Library dependency---------#
+#-----------Library dependency---------# 
 
 
 include(FetchContent)

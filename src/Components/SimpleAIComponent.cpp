@@ -12,7 +12,6 @@ void SimpleAIComponent::init(){
 
 void SimpleAIComponent::update(float dt){
 
-    
     Vector2D playerPos = target->getPos();
     Vector2D thisPos = tc->getPos();
     Vector2D vectorEntityPlayer=(playerPos-thisPos);

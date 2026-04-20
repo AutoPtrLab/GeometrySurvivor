@@ -26,7 +26,7 @@ void SimpleSpriteComponent::render(SDL::RendererPtr r){
     SDL_SetRenderDrawColor(r, 255, 0, 0, 255); // RGBA Testing
     SDL_RenderDrawLineF(r, x,     y,     x + s, y    ); // top
     SDL_RenderDrawLineF(r, x + s, y,     x + s, y + s); // right
-    SDL_RenderDrawLineF(r, x + s, y + s, x,     y + s); // bottom
+    SDL_RenderDrawLineF(r, x + s, y + s, x,     y + s); // bottom 
     SDL_RenderDrawLineF(r, x,     y + s, x,     y    ); // left
 
-}
+} 
