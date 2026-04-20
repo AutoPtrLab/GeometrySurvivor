@@ -4,17 +4,18 @@
 PlayingState::PlayingState(std::function <void(StateID)> chaState):State(chaState),cManager(eManager.getUpdateVec()){
 
     auto &e=eManager.addEntity(1);
-    e.addComponent<TransformComponent>(Vector2D{20,20}) ;
+    e.addComponent<TransformComponent>(Vector2D{400,20}) ;
     e.addComponent<SimpleSpriteComponent>();
     e.addComponent<ControllerComponent>(70.0f);
-    e.addComponent<ColliderComponent>(4.0f,ColliderFaction::Player);
+    e.addComponent<ColliderComponent>(4.0f,Faction::Player);
+    e.addComponent<HealthComponent>(100);
     e.init();
 
     auto &e2=eManager.addEntity(2);
     e2.addComponent<TransformComponent>(Vector2D{50,50}) ;
     e2.addComponent<SimpleSpriteComponent>();
     e2.addComponent<SimpleAIComponent>(e.getComponent<TransformComponent>(),30.0f);
-    e2.addComponent<ColliderComponent>(4.0f,ColliderFaction::Enemy);
+    e2.addComponent<ColliderComponent>(4.0f,Faction::Enemy);
     e2.init(); 
 
 }

@@ -15,7 +15,7 @@ class SimpleAIComponent: public Component<SimpleAIComponent>{
     public:
 
         SimpleAIComponent(TransformComponent* target,float speed = 50.0f);
-        void init();
-        void update(float dt);
+        void init() override;
+        void update(float dt) override;
 
 };

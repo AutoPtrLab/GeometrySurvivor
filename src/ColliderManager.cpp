@@ -17,24 +17,26 @@ void ColliderManager::checkCollisions(){
         auto colliderA = updateVec[i]->getComponent<ColliderComponent>();
         if (!colliderA) continue;
 
-    for (int j = i + 1; j < updateVec.size(); j++) { //j=i+1 so we dont double check entities
-        if (!updateVec[j]) continue; 
-        auto colliderB = updateVec[j]->getComponent<ColliderComponent>();
-        if (!colliderB) continue;
+        for (int j = i + 1; j < updateVec.size(); j++) { //j=i+1 so we dont double check entities
+            if (!updateVec[j]) continue; 
+            auto colliderB = updateVec[j]->getComponent<ColliderComponent>();
+            if (!colliderB) continue;
 
-        auto tag1=colliderA->getFaction();
-        auto tag2 = colliderB->getFaction();
+            auto tag1=colliderA->getFaction();
+            auto tag2 = colliderB->getFaction();
 
-        bool shouldCheck = (tag1 == ColliderFaction::Bullet && tag2 == ColliderFaction::Enemy) ||
-                           (tag1 == ColliderFaction::Enemy && tag2 == ColliderFaction::Bullet) ||
-                           (tag1 == ColliderFaction::Player && tag2 == ColliderFaction::Enemy);
+            bool shouldCheck = (tag1 == Faction::Bullet && tag2 == Faction::Enemy) ||
+                            (tag1 == Faction::Enemy && tag2 == Faction::Bullet) ||
+                            (tag1 == Faction::Player && tag2 == Faction::Enemy);
 
 
-        if (!shouldCheck) continue; // if they dont interact we skip the iteration
+            if (!shouldCheck) continue; // if they dont interact we skip the iteration
 
-        if (colliderA->checkCollision(*colliderB)) {// if they collide
-            printf("NIGGEr\n");
+            if (colliderA->checkCollision(*colliderB)) {// if they collide
+                if(colliderA->getFaction() == Faction::Player && colliderB->getFaction()==Faction::Enemy){
+                    updateVec[i]->getComponent<HealthComponent>()->getHit(10);
+                }
+            }
         }
     }
-}
 }

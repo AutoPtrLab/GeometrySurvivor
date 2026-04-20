@@ -19,6 +19,7 @@ set(LIB_HEADERS
         include/Entity.h
         include/EntityManager.h
         include/ColliderManager.h
+        include/Timer.h
         #-------COMPONENTS---------
         include/Components/Component.h
         include/Components/TransformComponent.h
@@ -27,6 +28,7 @@ set(LIB_HEADERS
         include/Components/ControllerComponent.h
         include/Components/SimpleAIComponent.h
         include/Components/ColliderComponent.h
+        include/Components/HealthComponent.h
         
 
 )
@@ -38,12 +40,14 @@ set(LIB_SRC
         src/PlayingState.cpp
         src/EntityManager.cpp
         src/ColliderManager.cpp
+        src/Timer.cpp
         #-----------COMPONENTS------
         src/Components/TransformComponent.cpp
         src/Components/SimpleSpriteComponent.cpp
         src/Components/ControllerComponent.cpp
         src/Components/SimpleAIComponent.cpp
         src/Components/ColliderComponent.cpp
+        src/Components/HealthComponent.cpp
 
 )
 

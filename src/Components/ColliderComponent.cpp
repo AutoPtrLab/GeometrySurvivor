@@ -2,7 +2,7 @@
 #include "Components/TransformComponent.h"
 #include "Entity.h"
 #include "Vector2D.h"
-ColliderComponent::ColliderComponent(float radius,ColliderFaction fact):radius(radius),faction(fact){}
+ColliderComponent::ColliderComponent(float radius,Faction fact):radius(radius),faction(fact){}
 
 
 void ColliderComponent::init(){
