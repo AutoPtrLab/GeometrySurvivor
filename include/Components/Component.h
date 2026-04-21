@@ -14,7 +14,7 @@ class BaseComponent{
 
     public:
         virtual ~BaseComponent()=default;
-        virtual void  update(float dt)=0;
+        virtual void  update(float dt){};
         virtual void render(SDL::RendererPtr r){}//NOT obligatory for every component, we dont use the alias here so we dont include "SDL_wrapper"
         virtual void init(){}//Use to aquire the components that your component needs
         virtual ComponentID getID() const = 0 ;

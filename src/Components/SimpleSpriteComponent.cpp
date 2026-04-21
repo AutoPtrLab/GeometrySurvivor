@@ -8,9 +8,7 @@ void SimpleSpriteComponent::init(){
     tc=entity->getComponent<TransformComponent>();
     
 }
-void SimpleSpriteComponent::update(float dt){
 
-}
 void SimpleSpriteComponent::render(SDL::RendererPtr r){
 
     float half = (side)/ 2.0f;
@@ -19,7 +17,7 @@ void SimpleSpriteComponent::render(SDL::RendererPtr r){
     float y = tc->getPos().y - half;
     float s = static_cast<float>(side);
 
-    SDL_SetRenderDrawColor(r, 255, 0, 0, 155); // tranparency
+    SDL_SetRenderDrawColor(r, 255, 0, 0, 155); // transparency
     SDL_FRect rect = { x, y, s, s };
     SDL_RenderFillRectF(r, &rect);
 

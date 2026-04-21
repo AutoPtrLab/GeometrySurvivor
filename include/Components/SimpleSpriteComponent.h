@@ -14,7 +14,6 @@ class SimpleSpriteComponent : public Component<SimpleSpriteComponent>{
 
     public:
         void init() override;
-        void update(float dt) override;
         void render(SDL::RendererPtr r) override;
 
 };

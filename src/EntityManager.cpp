@@ -3,7 +3,7 @@
 #include "Components/ColliderComponent.h"
 
 EntityManager::EntityManager(){
-    entityPool.reserve(1000);
+    entityPool.reserve(100);
 }
 
 EntityManager::~EntityManager()=default;
@@ -72,6 +72,9 @@ void EntityManager::garbageCollector(){
     }
 }
 void EntityManager::update(float dt){
+
+    
+
     for(const auto &e: updateVec){
         e->update(dt);
     }    

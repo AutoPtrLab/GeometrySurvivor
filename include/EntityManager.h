@@ -10,6 +10,8 @@ class EntityManager{
         std::vector<Entity*> updateVec;//observer of all entities
         std::vector<Entity*> renderVec;//Vector that host all the drawable entities
 
+     
+
     public:
 
         EntityManager();
@@ -25,6 +27,8 @@ class EntityManager{
 
         void update(float dt);
         void render(SDL::RendererPtr r);
+
+        
         
         const std::vector<Entity*>& getUpdateVec(){return updateVec;}
 };

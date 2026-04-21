@@ -2,19 +2,25 @@
 
 #include "Component.h"
 #include "Vector2D.h"
+#include "infoAI.h"
+
+ 
 class TransformComponent;
 
 class SimpleAIComponent: public Component<SimpleAIComponent>{
 
     private:
-        float speed =0.0f;
+       
         Vector2D dir;
         TransformComponent* tc=nullptr; 
-        TransformComponent* target=nullptr;
+        
+        infoAI *info=nullptr;
+        float speed =0.0f;
+
 
     public:
 
-        SimpleAIComponent(TransformComponent* target,float speed = 50.0f);
+        SimpleAIComponent(infoAI &info,float speed = 50.0f);
         void init() override;
         void update(float dt) override;
 

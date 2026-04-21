@@ -5,3 +5,4 @@
 #include "Components/SimpleAIComponent.h"
 #include "Components/ColliderComponent.h"
 #include "Components/HealthComponent.h"
+#include "Components/PlayerComponent.h"
