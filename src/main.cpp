@@ -7,5 +7,4 @@ int main(){
     Game g;
     g.init();
     SDL::quit();
-
 }

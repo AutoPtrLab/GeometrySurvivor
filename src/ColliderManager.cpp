@@ -35,6 +35,8 @@ void ColliderManager::checkCollisions(){
             if (colliderA->checkCollision(*colliderB)) {// if they collide
                 if(colliderA->getFaction() == Faction::Player && colliderB->getFaction()==Faction::Enemy){
                     updateVec[i]->getComponent<HealthComponent>()->getHit(10);
+                }else if(colliderA->getFaction() == Faction::Enemy && colliderB->getFaction()==Faction::Enemy){
+                    //updateVec[i]->getComponent<TransformComponent>()->
                 }
             }
         }

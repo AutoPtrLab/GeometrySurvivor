@@ -8,7 +8,7 @@ void HealthComponent::update(float dt){
 }
 
 void HealthComponent::getHit(int damage){
-
+   // printf("%d\n",health);
     if(timer.isReady()){
         health-=damage;
         timer.reset();

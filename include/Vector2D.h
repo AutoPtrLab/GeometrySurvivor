@@ -22,7 +22,7 @@ struct Vector2D {
         }
 
         Vector2D operator-(const Vector2D& v2)const{
-            return  {this->x-v2.x,this->y-v2.y};
+            return  {this->x-v2.x,this->y-v2.y}; 
         }
         
         Vector2D operator+=(const Vector2D& v2){
@@ -66,5 +66,14 @@ struct Vector2D {
                 float invMag=1.0f/mag;
                 return Vector2D(x*invMag,y*invMag);
             }
+        }
+        //this functions return the inverse vector
+        Vector2D getInverse() const{
+            return Vector2D(-x,-y);
+        }
+        Vector2D& Inverse() {
+            x=-x;
+            y=-y;
+            return *this;
         }
 };

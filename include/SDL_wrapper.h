@@ -35,12 +35,28 @@ namespace SDL{
     using Rect =  SDL_Rect;
     using FRect =  SDL_FRect;
     using Event = SDL_Event;
+    using Color= SDL_Color;
 
     inline auto renderClear(RendererPtr r)        { return SDL_RenderClear(r); }
     inline auto renderPresent(RendererPtr r)       { return SDL_RenderPresent(r); }
     inline auto renderDrawRect(RendererPtr r,Rect rect){return SDL_RenderDrawRect(r, &rect); }
     inline auto renderFillRect(RendererPtr r, Rect rect){return SDL_RenderFillRect(r,&rect); }
     inline auto renderFillRectF(RendererPtr r, FRect rect){return SDL_RenderFillRectF(r,&rect); }
+
+    //colors
+    namespace Colors{
+        
+        inline constexpr SDL_Color Red   = {255, 0, 0, 255};
+        inline constexpr SDL_Color Green = {0, 255, 0, 255};
+        inline constexpr SDL_Color Blue  = {0, 0, 255, 255};
+        inline constexpr SDL_Color Clear = {0, 0, 0, 0};
+        inline constexpr SDL_Color NeonPink    = {255, 0, 255, 255};   
+        inline constexpr SDL_Color Electric    = {0, 255, 255, 255};   
+        inline constexpr SDL_Color Toxic       = {57, 255, 20, 255};   
+        inline constexpr SDL_Color SunFlower   = {241, 196, 15, 255};  
+        inline constexpr SDL_Color Pumpkin     = {211, 84, 0, 255};    
+
+    }
 
     inline void init(){
         if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
