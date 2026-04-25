@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "Vector2D.h"
 #include "vector"
+#include "Timer.h"
 
 class TransformComponent; 
 class ControllerComponent : public Component<ControllerComponent>{
@@ -13,8 +14,10 @@ class ControllerComponent : public Component<ControllerComponent>{
         Vector2D dir;//vector betweeen the character and the mouse cursor
 
         std::vector<SDL_Event>& keyPressedVec;
-
+        
         TransformComponent *tc=nullptr;
+
+        Timer bulletCooldown{0.5f};
 
     public:
         

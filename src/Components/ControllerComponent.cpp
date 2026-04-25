@@ -9,6 +9,10 @@ void ControllerComponent::init(){
 }
 void ControllerComponent::update(float dt){
 
+    //update our clocks
+
+    bulletCooldown.update(dt);
+
     int mouseX, mouseY;
     SDL_GetMouseState(&mouseX, &mouseY);
     
@@ -33,9 +37,12 @@ void ControllerComponent::update(float dt){
         switch (e.key.keysym.scancode)
         {
         case SDL_SCANCODE_Z:
-            if(auto* spell=this->entity->getComponent<SpellComponent>()){//we create a variable so we dont check twice
-                spell->castSpell(SpellType::Bullet,playerPos,dir);
-                
+            if(bulletCooldown.isReady()){
+                if(auto* spell=this->entity->getComponent<SpellComponent>()){//we create a variable so we dont check twice
+                    spell->castSpell(SpellType::Bullet,playerPos,dir);
+                    bulletCooldown.reset();
+                    
+                }
             }
                 
             break;
