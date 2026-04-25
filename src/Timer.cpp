@@ -11,3 +11,9 @@ void Timer::reset(){
 bool Timer::isReady() const {
     return time>=duration;
 }
+void Timer::setReady() {
+    time=duration;
+}
+bool Timer::checkTime(float t){
+    return t>=time;
+}

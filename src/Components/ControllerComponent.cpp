@@ -1,8 +1,9 @@
 #include "Components/ControllerComponent.h"
 #include "Entity.h"
 #include "Components/TransformComponent.h"
+#include "Components/SpellComponent.h"
 
-ControllerComponent:: ControllerComponent(float speed):speed(speed){}
+ControllerComponent:: ControllerComponent(float speed,std::vector<SDL_Event>& keyPressedVec):speed(speed),keyPressedVec(keyPressedVec){}
 void ControllerComponent::init(){
     tc = this->entity->getComponent<TransformComponent>();
 }
@@ -26,5 +27,24 @@ void ControllerComponent::update(float dt){
         dir=vectorPlayerMouse*(1/dist);
         tc->setVel(dir*speed);
     }
+
+
+    for(auto const &e : keyPressedVec){
+        switch (e.key.keysym.scancode)
+        {
+        case SDL_SCANCODE_Z:
+            if(auto* spell=this->entity->getComponent<SpellComponent>()){//we create a variable so we dont check twice
+                spell->castSpell(SpellType::Bullet,playerPos,dir);
+                
+            }
+                
+            break;
+        
+        default:
+            break;
+        }
+    }
+
+    keyPressedVec.clear(); //we clean the 
 
 }

@@ -13,6 +13,7 @@ class SimpleAIComponent: public Component<SimpleAIComponent>{
        
         Vector2D dir;
         TransformComponent* tc=nullptr; 
+        Faction targetFaction=Faction::None; //mode to aim towards the player or the nearest enemy
         
         infoAI *info=nullptr;
         float speed =0.0f;

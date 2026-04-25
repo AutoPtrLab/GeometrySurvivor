@@ -18,9 +18,9 @@ void SimpleAIComponent::update(float dt){
         return; //if player is dead we do nothing
     }
     
-    Vector2D playerPos = info->playerPos;    
+    Vector2D targetPos = info->playerPos;    
     Vector2D thisPos = tc->getPos();
-    Vector2D vectorEntityPlayer=(playerPos-thisPos);
+    Vector2D vectorEntityPlayer=(targetPos-thisPos);
     float dist=vectorEntityPlayer.getMagnitude();
 
     

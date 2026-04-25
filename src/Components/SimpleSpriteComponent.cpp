@@ -14,8 +14,9 @@ SimpleSpriteComponent::SimpleSpriteComponent(){
 
 }
 
-SimpleSpriteComponent::SimpleSpriteComponent(int radius,int sides,SDL::Color color):radius(radius),sides(sides),color(color){
-
+SimpleSpriteComponent::SimpleSpriteComponent(int radius,int sides,SDL::Color color):radius(radius),sides(sides),color(color),firstColor(color)
+ ,secColor(color){
+    secColor.a /=2;
 }
 
 void SimpleSpriteComponent::init(){
@@ -25,7 +26,7 @@ void SimpleSpriteComponent::init(){
 
 void SimpleSpriteComponent::render(SDL::RendererPtr r){
 
-    
+
     
     float x = tc->getPos().x ;
     float y = tc->getPos().y ;
@@ -40,16 +41,14 @@ void SimpleSpriteComponent::render(SDL::RendererPtr r){
     }                
     float angle=deg2rad(360.0f/sides);
     std::vector<SDL_Vertex> vertex(sides);
+    
     for(int i=0;i<sides;i++){
 
         vertex[i]={SDL_FPoint{x+radius*sin(angle*i),y-radius*cos(angle*i)},color,{0,0}}; 
-
+       
     }
 
-
+    
     SDL_RenderGeometry(r,nullptr,vertex.data(),sides,index.data(),(sides-2)*3);
-
-
-
 
 } 

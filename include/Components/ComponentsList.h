@@ -6,3 +6,5 @@
 #include "Components/ColliderComponent.h"
 #include "Components/HealthComponent.h"
 #include "Components/PlayerComponent.h"
+#include "Components/SpellComponent.h"
+#include "Components/LifeTimeComponent.h"

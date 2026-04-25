@@ -2,7 +2,7 @@
 #include "Components/Component.h"
 #include "Components/TransformComponent.h"
 
-enum class Faction{ None,Enemy,Player,Bullet}; //tag to know which collisions must interact with each other
+
 
 class TransformComponent;
 class Vector2D;

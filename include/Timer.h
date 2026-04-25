@@ -14,5 +14,7 @@ class Timer{
         void update(float dt);
         void reset();
         bool isReady() const ;
+        void setReady(); //function so th etimer is already charge
+        bool checkTime(float t); //it returns true if the time you pass is more or equal to the time in the timer
 
 };

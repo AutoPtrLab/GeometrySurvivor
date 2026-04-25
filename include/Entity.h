@@ -30,7 +30,8 @@ class Entity{
     public:
 
         Entity():ID(nextID++){};
-        Entity(int depth):ID(nextID++),depth(depth){}
+        Entity(int depth):ID(nextID++),depth(depth){ //printf("%d\n",nextID);
+            }
 
 
         ~Entity()=default;

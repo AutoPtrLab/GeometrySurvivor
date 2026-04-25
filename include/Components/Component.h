@@ -2,6 +2,9 @@
 #include <cstddef>
 #include "SDL_wrapper.h"
 
+
+enum class Faction{ None,Enemy,Player,Bullet};//faction of each entity
+
 using ComponentID = std::size_t; //alias for Component ID
 
 inline ComponentID getUniqueComponentID() { //generator of ComponentIDs
