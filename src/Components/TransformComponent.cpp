@@ -2,8 +2,8 @@
  
 
 
-TransformComponent::TransformComponent(Vector2D initpos):pos(initpos){
-    vel=Vector2D{10,10};
+TransformComponent::TransformComponent(Vector2D initpos,float s):pos(initpos),speed(s){
+    
 }
 
 void TransformComponent::update(float dt){

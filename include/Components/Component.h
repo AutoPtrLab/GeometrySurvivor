@@ -3,7 +3,7 @@
 #include "SDL_wrapper.h"
 
 
-enum class Faction{ None,Enemy,Player,Bullet};//faction of each entity
+enum class Faction{ None,Enemy,Player,Bullet,Spell};//faction of each entity
 
 using ComponentID = std::size_t; //alias for Component ID
 

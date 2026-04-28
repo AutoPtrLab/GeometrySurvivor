@@ -15,5 +15,4 @@ class HealthComponent:public Component<HealthComponent>{
         void getHit(int damage);
         void update(float dt)override;
         
-        
 };

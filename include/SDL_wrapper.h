@@ -2,7 +2,6 @@
 
 
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include <memory>
 
 //=============================================================
@@ -42,6 +41,7 @@ namespace SDL{
     inline auto renderDrawRect(RendererPtr r,Rect rect){return SDL_RenderDrawRect(r, &rect); }
     inline auto renderFillRect(RendererPtr r, Rect rect){return SDL_RenderFillRect(r,&rect); }
     inline auto renderFillRectF(RendererPtr r, FRect rect){return SDL_RenderFillRectF(r,&rect); }
+    inline auto setRenderDrawColor(RendererPtr ren,Uint8 r ,Uint8 b,Uint8 g,Uint8 a){return SDL_SetRenderDrawColor(ren,r,b,g,a);}
 
     //colors
     namespace Colors{
@@ -55,17 +55,17 @@ namespace SDL{
         inline constexpr SDL_Color Toxic       = {57, 255, 20, 255};   
         inline constexpr SDL_Color SunFlower   = {241, 196, 15, 255};  
         inline constexpr SDL_Color Pumpkin     = {211, 84, 0, 255};    
+        inline constexpr SDL_Color voidDust = {75, 0, 130, 200};
 
     }
-
     inline void init(){
-        if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+    if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
         printf("SDL cant load. Error: %s\n", SDL_GetError());
         SDL_Quit();
         exit(1);
-        }
-
     }
+    
+}
 
 
     inline void quit(){
@@ -97,7 +97,7 @@ namespace SDL{
         return Renderer(r, SDL_DestroyRenderer);
     }
 
-    inline Texture LoadTexture(const char* file,const  RendererPtr &r){
+/*     inline Texture LoadTexture(const char* file,RendererPtr r){
         SDL_Texture *t=IMG_LoadTexture(r,file);
         if(!t){
             printf("error trying to create the texture: %s\n",file);
@@ -106,18 +106,18 @@ namespace SDL{
             
         }
         return Texture(t, SDL_DestroyTexture);
-    }
+    } */
 
 
-    inline void RenderClear(Renderer &r){
-        SDL_RenderClear(r.get());
+    inline void RenderClear(RendererPtr r){
+        SDL_RenderClear(r);
     }
-    inline void RenderPresent(Renderer &r){
-        SDL_RenderPresent(r.get());
+    inline void RenderPresent(RendererPtr r){
+        SDL_RenderPresent(r);
     }
 
-    inline void RenderCopy(Renderer &r,TextPtr t, const Rect src, const Rect dest){
-        SDL_RenderCopy(r.get(), t, &src, &dest);
+    inline void RenderCopy(RendererPtr r,TextPtr t, Rect* src,Rect* dest){
+        SDL_RenderCopy(r, t, src, dest);
     }
 
 }

@@ -16,12 +16,10 @@ class SimpleAIComponent: public Component<SimpleAIComponent>{
         Faction targetFaction=Faction::None; //mode to aim towards the player or the nearest enemy
         
         infoAI *info=nullptr;
-        float speed =0.0f;
-
 
     public:
 
-        SimpleAIComponent(infoAI &info,float speed = 50.0f);
+        SimpleAIComponent(infoAI &info);
         void init() override;
         void update(float dt) override;
 

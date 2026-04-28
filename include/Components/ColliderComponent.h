@@ -20,6 +20,7 @@ class ColliderComponent:public Component<ColliderComponent>{
         void init() override;
         void update(float dt) override;
         bool checkCollision(const ColliderComponent& other); //the entityManager will manage collisions
+        virtual void onCollision(Entity& e);
         Vector2D getPos() const{return tc->getPos();}
         float getRadius() const{return radius;}
         Faction getFaction() const{return faction;}

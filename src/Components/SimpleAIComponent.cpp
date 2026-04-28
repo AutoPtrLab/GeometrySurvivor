@@ -2,7 +2,7 @@
 #include "Components/TransformComponent.h"
 #include "Entity.h"
 
-SimpleAIComponent::SimpleAIComponent(infoAI& info,float speed):info(&info),speed(speed){
+SimpleAIComponent::SimpleAIComponent(infoAI& info):info(&info){
      
 }
 
@@ -21,6 +21,7 @@ void SimpleAIComponent::update(float dt){
     Vector2D targetPos = info->playerPos;    
     Vector2D thisPos = tc->getPos();
     Vector2D vectorEntityPlayer=(targetPos-thisPos);
+    float speed= tc->getSpeed();
     float dist=vectorEntityPlayer.getMagnitude();
 
     

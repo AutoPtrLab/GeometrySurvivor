@@ -1,14 +1,9 @@
 cmake_minimum_required(VERSION 3.23)
 project(GeometrySurvivor)
 
-
-#-------------DECLARE FILES---------------------
-#MAIN
 set(APP_SRC
         src/main.cpp
 )
-
-#LIBRARY HEADERS
 
 set(LIB_HEADERS
         include/Game.h
@@ -22,7 +17,9 @@ set(LIB_HEADERS
         include/Timer.h
         include/infoAI.h
         include/Factory.h
-        #-------COMPONENTS---------
+        include/MenuState.h
+        include/Spells.h
+        #==========COMPONENTS=================
         include/Components/Component.h
         include/Components/TransformComponent.h
         include/Components/ComponentsList.h
@@ -34,12 +31,9 @@ set(LIB_HEADERS
         include/Components/PlayerComponent.h
         include/Components/SpellComponent.h
         include/Components/LifeTimeComponent.h
-        
-        
-
+        include/Components/SpellComponent.h
+        include/Components/SpellColliderComponent.h
 )
-
-#LIBRARY SOURCES
 
 set(LIB_SRC
         src/Game.cpp
@@ -48,7 +42,8 @@ set(LIB_SRC
         src/ColliderManager.cpp
         src/Timer.cpp
         src/Factory.cpp
-        #-----------COMPONENTS------
+        src/MenuState.cpp
+        #=====COMPONENTS============
         src/Components/TransformComponent.cpp
         src/Components/SimpleSpriteComponent.cpp
         src/Components/ControllerComponent.cpp
@@ -58,50 +53,40 @@ set(LIB_SRC
         src/Components/PlayerComponent.cpp
         src/Components/SpellComponent.cpp
         src/Components/LifeTimeComponent.cpp
+        src/Components/SpellComponent.cpp
+        src/Components/SpellColliderComponent.cpp
 )
 
-
-#-----------Library dependency---------# 
-
-
 include(FetchContent)
-
 FetchContent_Declare(
     SDL2
     GIT_REPOSITORY https://github.com/libsdl-org/SDL.git
-    GIT_TAG release-2.30.0 
+    GIT_TAG release-2.30.0
 )
-
 FetchContent_MakeAvailable(SDL2)
-
-
 
 add_library(Library)
 
-target_sources(Library
-    PRIVATE
-        ${LIB_SRC}
-    PUBLIC
-        FILE_SET HEADERS
-        BASE_DIRS
-            include
-        FILES
-            ${LIB_HEADERS}
 
+target_sources(Library
+    PRIVATE ${LIB_SRC}
+    PUBLIC
+    FILE_SET HEADERS
+    BASE_DIRS include
+    FILES ${LIB_HEADERS}
 )
-target_link_libraries(Library 
-    PUBLIC 
-        SDL2::SDL2
+
+
+target_link_libraries(Library
+    PUBLIC
+    SDL2::SDL2
 )
 
 add_executable(GeometrySurvivorApp)
 target_sources(GeometrySurvivorApp
+    PRIVATE ${APP_SRC}
+)
+target_link_libraries(GeometrySurvivorApp
     PRIVATE
-        ${APP_SRC}
+    Library
 )
-
-target_link_libraries(GeometrySurvivorApp 
-    PRIVATE 
-        Library
-)
-

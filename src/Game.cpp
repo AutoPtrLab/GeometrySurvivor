@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "PlayingState.h"
+#include "MenuState.h"
 
 Game::Game():window(SDL::CreateWindow()),renderer(SDL::CreateRenderer(window)){}
 
@@ -9,7 +10,7 @@ void Game::init(){
 
     running=true;
 
-    currentState=std::make_unique<PlayingState>([this](StateID id){ nextState=id;});
+    currentState=std::make_unique<MenuState>([this](StateID id){ nextState=id;});
 
     Uint64 lastTime = SDL_GetPerformanceCounter();  
 
@@ -45,7 +46,10 @@ void Game::init(){
 
         
         updateState();
+        SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 255); // RGBA
+        SDL::RenderClear(renderer.get());
         currentState->render(renderer.get());
+        SDL::RenderPresent(renderer.get());
     }
 }
 

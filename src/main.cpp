@@ -1,9 +1,9 @@
 
 #include "Game.h"
 
-int main(){
+int main(int argc,char* argv[]){
     
-    SDL::init();
+   SDL::init();
     Game g;
     g.init();
     SDL::quit();

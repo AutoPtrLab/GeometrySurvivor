@@ -26,12 +26,18 @@ void SimpleSpriteComponent::init(){
 
 void SimpleSpriteComponent::render(SDL::RendererPtr r){
 
-
-    
     float x = tc->getPos().x ;
     float y = tc->getPos().y ;
     
-    //maybe precalculate cos and sin
+    auto auxColor= color;
+    auxColor.a=static_cast<Uint8>(auxColor.a*0.60f);
+    drawPolygon(x,y,radius,r,auxColor);
+    drawPolygon(x,y,radius*0.70f,r,color); 
+
+} 
+
+void SimpleSpriteComponent::drawPolygon(float x ,float y,float rad,SDL::RendererPtr r,SDL::Color c){
+
     std::vector<int> index((sides-2)*3);//number of triangles we need to draw a regular shape is its sides-2()
     //triangule fan rule
     for(int i=0;i<sides-2;i++){
@@ -44,11 +50,10 @@ void SimpleSpriteComponent::render(SDL::RendererPtr r){
     
     for(int i=0;i<sides;i++){
 
-        vertex[i]={SDL_FPoint{x+radius*sin(angle*i),y-radius*cos(angle*i)},color,{0,0}}; 
+        vertex[i]={SDL_FPoint{x+rad*sin(angle*i),y-rad*cos(angle*i)},c,{0,0}}; 
        
     }
 
     
     SDL_RenderGeometry(r,nullptr,vertex.data(),sides,index.data(),(sides-2)*3);
-
-} 
+}

@@ -27,6 +27,7 @@ class SimpleSpriteComponent : public Component<SimpleSpriteComponent>{
         SimpleSpriteComponent(int radius,int sides,SDL::Color color=SDL::Colors::Red);//size of the geometry shape and what regular polygon is it
         void init() override;
         void render(SDL::RendererPtr r) override;
+        void drawPolygon(float x ,float y,float rad,SDL::RendererPtr r,SDL::Color  c);
         void setFirstColor(){this->color=firstColor;}
         void setSecColor(){this->color=secColor;}
         void setHitColor(){this->color=hitColor;}

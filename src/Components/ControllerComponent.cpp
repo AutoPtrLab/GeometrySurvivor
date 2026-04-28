@@ -3,15 +3,14 @@
 #include "Components/TransformComponent.h"
 #include "Components/SpellComponent.h"
 
-ControllerComponent:: ControllerComponent(float speed,std::vector<SDL_Event>& keyPressedVec):speed(speed),keyPressedVec(keyPressedVec){}
+ControllerComponent:: ControllerComponent(std::vector<SDL_Event>& keyPressedVec):keyPressedVec(keyPressedVec){}
 void ControllerComponent::init(){
     tc = this->entity->getComponent<TransformComponent>();
 }
 void ControllerComponent::update(float dt){
 
-    //update our clocks
 
-    bulletCooldown.update(dt);
+
 
     int mouseX, mouseY;
     SDL_GetMouseState(&mouseX, &mouseY);
@@ -22,6 +21,7 @@ void ControllerComponent::update(float dt){
     Vector2D mousePos={logicalX,logicalY};
     Vector2D playerPos = tc->getPos();
     Vector2D vectorPlayerMouse=(mousePos-playerPos);
+    float speed=tc->getSpeed();
     float dist=vectorPlayerMouse.getMagnitude();
 
 
@@ -36,19 +36,24 @@ void ControllerComponent::update(float dt){
     for(auto const &e : keyPressedVec){
         switch (e.key.keysym.scancode)
         {
-        case SDL_SCANCODE_Z:
-            if(bulletCooldown.isReady()){
-                if(auto* spell=this->entity->getComponent<SpellComponent>()){//we create a variable so we dont check twice
-                    spell->castSpell(SpellType::Bullet,playerPos,dir);
-                    bulletCooldown.reset();
-                    
-                }
-            }
+            case SDL_SCANCODE_Z:
                 
-            break;
-        
-        default:
-            break;
+                if(auto* spell=this->entity->getComponent<SpellComponent>()){//we create a variable so we dont check twice
+                    spell->castSpell(Spell::Bullet,dir);
+
+                }
+                
+                    
+                break;
+            case SDL_SCANCODE_X:
+                
+                if(auto* spell=this->entity->getComponent<SpellComponent>()){//we create a variable so we dont check twice
+                    spell->castSpell(Spell::Dash,dir);     
+                }
+                
+                break;
+            default:
+                break;
         }
     }
 

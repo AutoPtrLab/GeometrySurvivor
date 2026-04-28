@@ -10,8 +10,8 @@ class Entity;
 
 class PlayerComponent : public Component<PlayerComponent> {
 
-    private:
-
+    private:        
+        
         std::function<void()> destroyPlayer; //automatically sets null the player reference
         std::function<void(Entity& e)> setPlayer;
     public:
@@ -21,6 +21,7 @@ class PlayerComponent : public Component<PlayerComponent> {
 
         void init() override;
 
-
+        void update(float dt) override;
+        void render(SDL::RendererPtr r)override;
 
 };

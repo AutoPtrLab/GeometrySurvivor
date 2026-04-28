@@ -1,28 +1,35 @@
 #pragma once
 #include "Component.h"
-#include "unordered_map"
+#include "array"
 #include "functional"
 #include "Vector2D.h"
+#include "Spells.h"
 
-enum class SpellType{
-    Bullet,
-    Dash
-};
+namespace Spell{
+    enum  SpellType{
+        Bullet,
+        Dash
+    };
+}
 
-
+constexpr size_t MaxSpells=32;
 class SpellComponent : public Component<SpellComponent>{
 
     private:
 
-        std::unordered_map<SpellType,std::function <void (Vector2D pos,Vector2D dir)>> spells;
+        std::array<std::unique_ptr<ISpell>,MaxSpells> spells; 
+    
 
     public:
 
         SpellComponent();
         ~SpellComponent();
 
-        void addSpell(SpellType type,std::function<void(Vector2D pos,Vector2D dir)> spell); //you cant overwrite spells
-        void castSpell(SpellType type,Vector2D initPos,Vector2D dir);//if thre is no 
+        void addSpell(Spell::SpellType type,std::unique_ptr<ISpell> ptr);//the making of the spells is made in the factory 
+        void castSpell(Spell::SpellType type,Vector2D dir);//if thre is no 
+
+        void update(float dt) override;
+        void render(SDL::RendererPtr r) override;
 
 
 };

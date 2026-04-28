@@ -28,32 +28,43 @@ void ColliderManager::checkCollisions() {
             bool shouldCheck = (tag1 == Faction::Bullet && tag2 == Faction::Enemy) ||
                                (tag1 == Faction::Enemy  && tag2 == Faction::Bullet) ||
                                (tag1 == Faction::Player && tag2 == Faction::Enemy)  ||
-                               (tag1 == Faction::Enemy  && tag2 == Faction::Player);
+                               (tag1 == Faction::Enemy  && tag2 == Faction::Player) ||
+                               (tag1 == Faction::Enemy  && tag2 == Faction::Spell) ||
+                               (tag1 == Faction::Spell  && tag2 == Faction::Enemy);
 
             if (!shouldCheck) continue;
             if (!colliderA->checkCollision(*colliderB)) continue;
 
-            // Normalizamos quién es quién
+            //so we can have this more legible
             Entity* bullet = nullptr;
             Entity* enemy  = nullptr;
             Entity* player = nullptr;
+            Entity* spell  = nullptr;
 
             if      (tag1 == Faction::Bullet && tag2 == Faction::Enemy)  { bullet = updateVec[i]; enemy  = updateVec[j]; }
             else if (tag1 == Faction::Enemy  && tag2 == Faction::Bullet) { bullet = updateVec[j]; enemy  = updateVec[i]; }
             else if (tag1 == Faction::Player && tag2 == Faction::Enemy)  { player = updateVec[i]; enemy  = updateVec[j]; }
             else if (tag1 == Faction::Enemy  && tag2 == Faction::Player) { player = updateVec[j]; enemy  = updateVec[i]; }
+            else if (tag1 == Faction::Spell && tag2 == Faction::Enemy)   { spell = updateVec[i]; enemy  = updateVec[j]; }
+            else if (tag1 == Faction::Enemy  && tag2 == Faction::Spell)  { spell = updateVec[j]; enemy  = updateVec[i]; }
 
             if (bullet && enemy) {
                 bullet->destroy();
-                enemy->destroy();
                 if (auto* hp = enemy->getComponent<HealthComponent>())
-                    hp->getHit(20);
+                    hp->getHit(10);
             }
 
             if (player && enemy) {
                 if (auto* hp = player->getComponent<HealthComponent>())
                     hp->getHit(10);
             }
+
+            if(spell && enemy){
+                if(auto* hp = enemy->getComponent<HealthComponent>()){
+                    hp->getHit();
+                }
+            }
+
         }
     }
 }

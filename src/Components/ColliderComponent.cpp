@@ -13,9 +13,13 @@ void ColliderComponent::update(float dt){
 
 }
 
+
 bool ColliderComponent::checkCollision(const ColliderComponent &other){
     
     return Vector2D(getPos() - other.getPos()).getMagnitudeSq()< ((radius + other.getRadius())*(radius + other.getRadius())); //the distance are squared so we can avoid sqrtroots
  }
      
 
+void ColliderComponent::onCollision(Entity& e){
+    
+}
