@@ -8,7 +8,8 @@
 namespace Spell{
     enum  SpellType{
         Bullet,
-        Dash
+        Dash,
+        Blast
     };
 }
 

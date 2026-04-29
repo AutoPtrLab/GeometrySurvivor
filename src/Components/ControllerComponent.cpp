@@ -52,6 +52,11 @@ void ControllerComponent::update(float dt){
                 }
                 
                 break;
+
+            case SDL_SCANCODE_C:
+                if(auto* spell=this->entity->getComponent<SpellComponent>()){//we create a variable so we dont check twice
+                    spell->castSpell(Spell::Blast,dir);     
+                }
             default:
                 break;
         }

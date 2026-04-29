@@ -90,6 +90,13 @@ class  BlastSpell:public ISpell{
     public:
 
         BlastSpell(std::function<void(Vector2D initPos)> func):ISpell(5.0f),spawnBlast(func){}
+
+        void cast(Entity& e,Vector2D dir){
+            if(cooldown.isReady()){
+                if(spawnBlast){spawnBlast(e.getComponent<TransformComponent>()->getPos());}
+                cooldown.reset();
+            }
+        }
         void update(Entity& e,float dt) override{
             cooldown.update(dt);
         }

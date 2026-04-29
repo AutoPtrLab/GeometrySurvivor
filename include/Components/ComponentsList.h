@@ -8,3 +8,4 @@
 #include "Components/PlayerComponent.h"
 #include "Components/SpellComponent.h"
 #include "Components/LifeTimeComponent.h"
+#include "Components/Colliders.h"

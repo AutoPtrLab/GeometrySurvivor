@@ -42,14 +42,14 @@ Entity& Factory::addEntity(int depth){
 
 
 void Factory::makeBullet(Vector2D pos,Vector2D dir){
-    
+        //maybe change if the bullet receive if its an enemy bullet or a player bullet
         auto& e=addEntity(5);
 
 
         e.addComponent<TransformComponent>(pos);
         e.getComponent<TransformComponent>()->setVel(dir*150.0f);
         e.addComponent<SimpleSpriteComponent>(2,3,SDL::Colors::NeonPink);
-        e.addComponent<ColliderComponent>(3,Faction::Bullet);
+        e.addComponent<BulletCollider>(3.0f,CollisionLayer::Spell,CollisionLayer::Enemy);
         e.addComponent<LifeTimeComponent>(5.0f); 
         e.init();
 }   
@@ -61,8 +61,8 @@ void Factory::makeRandomEnemy(){
     int rad=randomInt(5,10);//radius of the enemy
     auto color=SDL::Color{static_cast<Uint8>(randomInt(0,255)),static_cast<Uint8>(randomInt(0,255)),static_cast<Uint8>(randomInt(0,255)),255};
     e.addComponent<SimpleSpriteComponent>(rad,randomInt(3,10),color);
-    e.addComponent<ColliderComponent>(rad,Faction::Enemy);
-    e.addComponent<HealthComponent>(rad*10,0.0f);//no inviTime for the enemies
+    e.addComponent<EnemyCollider>(rad,CollisionLayer::Enemy,CollisionLayer::Player);
+    e.addComponent<HealthComponent>(rad*10,0.2f);//no inviTime for the enemies
     e.addComponent<SimpleAIComponent>(AIcontext);
     e.init();
 }
@@ -71,7 +71,26 @@ void Factory::makeBlast(Vector2D pos){
 
     auto&e = addEntity(1);//making the first thing visible
      e.addComponent<TransformComponent>(pos);
-     e.addComponent<ColliderComponent>(20.0f,Faction::Spell);
-     e.addComponent<LifeTimeComponent>(0.2f);
-     e.addComponent<SimpleSpriteComponent>(20.0f,12,SDL::Colors::voidDust);
+     e.addComponent<SpellCollider>(40.0f,CollisionLayer::Spell,CollisionLayer::Enemy);
+     e.addComponent<LifeTimeComponent>(0.5f);
+     e.addComponent<SimpleSpriteComponent>(40.0f,20,SDL::Colors::voidDust);
+     e.init();
+}
+
+
+void Factory::makePlayer(std::function<void (Entity& e)> funcCreate ,std::function<void ()> funcDestroy , std::vector <SDL::Event> &keyPressedVec){
+
+    auto &e=addEntity(2);
+    e.addComponent<TransformComponent>(Vector2D{400,20},100.0f) ;
+    e.addComponent<SimpleSpriteComponent>(8,5,SDL::Colors::Electric);
+    e.addComponent<ControllerComponent>(keyPressedVec);
+    e.addComponent<PlayerCollider>(4.0f,CollisionLayer::Player,CollisionLayer::None);
+    e.addComponent<HealthComponent>(100);
+    e.addComponent<PlayerComponent>(funcCreate,funcDestroy);
+    e.addComponent<SpellComponent>().addSpell(Spell::Bullet,std::make_unique<BulletSpell>([this](Vector2D initpos,Vector2D dir){
+        this->makeBullet(initpos,dir);
+    }));
+    e.getComponent<SpellComponent>()->addSpell(Spell::Dash,std::make_unique<DashSpell>());
+    e.getComponent<SpellComponent>()->addSpell(Spell::Blast,std::make_unique<BlastSpell>([this](Vector2D initPos){this->makeBlast(initPos);}));
+    e.init();
 }

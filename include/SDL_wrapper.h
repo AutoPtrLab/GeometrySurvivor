@@ -55,7 +55,7 @@ namespace SDL{
         inline constexpr SDL_Color Toxic       = {57, 255, 20, 255};   
         inline constexpr SDL_Color SunFlower   = {241, 196, 15, 255};  
         inline constexpr SDL_Color Pumpkin     = {211, 84, 0, 255};    
-        inline constexpr SDL_Color voidDust = {75, 0, 130, 200};
+        inline constexpr SDL_Color voidDust = {75, 0, 130, 70};
 
     }
     inline void init(){

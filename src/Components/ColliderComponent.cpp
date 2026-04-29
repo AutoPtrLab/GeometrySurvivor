@@ -2,7 +2,7 @@
 #include "Components/TransformComponent.h"
 #include "Entity.h"
 #include "Vector2D.h"
-ColliderComponent::ColliderComponent(float radius,Faction fact):radius(radius),faction(fact){}
+ColliderComponent::ColliderComponent(float radius, CollisionLayer::Type layer,CollisionLayer::Type mask ):radius(radius),layer(layer),mask(mask){}
 
 
 void ColliderComponent::init(){
@@ -20,6 +20,3 @@ bool ColliderComponent::checkCollision(const ColliderComponent &other){
  }
      
 
-void ColliderComponent::onCollision(Entity& e){
-    
-}

@@ -44,6 +44,6 @@ class Component:public BaseComponent{
         ComponentID getID() const override { // virtual call when we dont know the type
             return getStaticID();
         }
-
+        Entity* getEntity() const {return entity;}
 };
 

@@ -5,21 +5,10 @@ PlayingState::PlayingState(std::function <void(StateID)> chaState):State(chaStat
     
     
 
-    //inicialitation of entities( factory neede ASAP)
-    auto &e=eManager.addEntity(1);
-    e.addComponent<TransformComponent>(Vector2D{400,20},100.0f) ;
-    e.addComponent<SimpleSpriteComponent>(8,5,SDL::Colors::Electric);
-    e.addComponent<ControllerComponent>(keyPressedVec);
-    e.addComponent<ColliderComponent>(4.0f,Faction::Player);
-    e.addComponent<HealthComponent>(100);
-    e.addComponent<PlayerComponent>([this](Entity& e){setAsPlayer(e);},[this](){setPlayerNull();});
+    
+    fact.makePlayer([this](Entity& e){setAsPlayer(e);},[this](){setPlayerNull();},keyPressedVec);
 
-    e.addComponent<SpellComponent>().addSpell(Spell::Bullet,std::make_unique<BulletSpell>([this](Vector2D initpos,Vector2D dir){
-        this->fact.makeBullet(initpos,dir);
-    }));
-    e.getComponent<SpellComponent>()->addSpell(Spell::Dash,std::make_unique<DashSpell>());
-   // e.addComponent<SpellComponent>().addSpell(SpellType::Dash,[&e](Vector2D pos,Vector2D dir){});
-    e.init();
+    
     for(int i=0;i<9;i++){
         fact.makeRandomEnemy();
     }

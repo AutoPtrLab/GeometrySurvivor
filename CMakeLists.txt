@@ -32,7 +32,7 @@ set(LIB_HEADERS
         include/Components/SpellComponent.h
         include/Components/LifeTimeComponent.h
         include/Components/SpellComponent.h
-        include/Components/SpellColliderComponent.h
+        include/Components/Colliders.h
 )
 
 set(LIB_SRC
@@ -54,7 +54,7 @@ set(LIB_SRC
         src/Components/SpellComponent.cpp
         src/Components/LifeTimeComponent.cpp
         src/Components/SpellComponent.cpp
-        src/Components/SpellColliderComponent.cpp
+        src/Components/Colliders.cpp
 )
 
 include(FetchContent)
