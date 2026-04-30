@@ -2,7 +2,7 @@
 #include "Vector2D.h"
 
 class TransformComponent;//forward declaration of the transformComponent
-
+class HealthComponent;
 
 
 class SimpleSpriteComponent : public Component<SimpleSpriteComponent>{
@@ -19,6 +19,8 @@ class SimpleSpriteComponent : public Component<SimpleSpriteComponent>{
         SDL::Color hitColor={255, 255, 255, 220}; //white 
 
         TransformComponent *tc=nullptr;
+        HealthComponent *hc=nullptr;
+
         Vector2D prevPos;
 
 

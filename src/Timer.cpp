@@ -17,3 +17,8 @@ void Timer::setReady() {
 bool Timer::checkTime(float t){
     return t>=time;
 }
+
+void Timer::startTimer(float t){
+    duration=t;
+    reset();
+}

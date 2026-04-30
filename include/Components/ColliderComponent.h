@@ -31,7 +31,7 @@ class ColliderComponent:public Component<ColliderComponent>{
     public:
         ColliderComponent(float radius, CollisionLayer::Type layer,CollisionLayer::Type mask );
         void init() override;
-        void update(float dt) override;
+        virtual void update(float dt) override;
         bool checkCollision(const ColliderComponent& other); //the entityManager will manage collisions
         virtual void onCollision(Entity* e)=0;
         Vector2D getPos() const{return tc->getPos();}

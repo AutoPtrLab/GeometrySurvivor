@@ -9,6 +9,6 @@ TransformComponent::TransformComponent(Vector2D initpos,float s):pos(initpos),sp
 void TransformComponent::update(float dt){
     
     vel+=accel*dt;
-    pos+=vel*dt;
+    pos+=vel*dt*speedMult;
 
 }

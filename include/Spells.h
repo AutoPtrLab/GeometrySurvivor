@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "Timer.h"
 #include "Components/TransformComponent.h"
+#include "Components/HealthComponent.h"
 
 
 class ISpell{
@@ -15,7 +16,9 @@ class ISpell{
         ISpell(float cooldown):cooldown(cooldown){}
         virtual ~ISpell()=default;
         virtual void cast(Entity& e,Vector2D dir)=0;
-        virtual void update(Entity& e,float dt){};
+        virtual void update(Entity& e,float dt){
+            cooldown.update(dt);
+        };
         virtual void render(Entity& e,SDL::RendererPtr r){}
 
         
@@ -29,16 +32,14 @@ class BulletSpell : public ISpell{
 
     public:
 
-        BulletSpell(std::function<void(Vector2D initPos,Vector2D dir)> func):ISpell(0.5f),castBullet(func){}
+        BulletSpell(float rechargeTime,std::function<void(Vector2D initPos,Vector2D dir)> func):ISpell(rechargeTime),castBullet(func){}
         void cast(Entity& e,Vector2D dir) override{
             if(cooldown.isReady()){ 
                 if(castBullet) castBullet(e.getComponent<TransformComponent>()->getPos(),dir);
                 cooldown.reset();
             }
         }
-        void update(Entity& e,float dt) override{
-            cooldown.update(dt);
-        }
+        
 
 };
 
@@ -81,26 +82,20 @@ class DashSpell:public ISpell{
 };
 
 
-class  BlastSpell:public ISpell{
+
+class CallbackSpell :public ISpell{//spell for which we only call a lambda 
 
     private:
-
-        std::function<void(Vector2D initPos)> spawnBlast;
+        std::function<void(Vector2D pos)> callback;
 
     public:
-
-        BlastSpell(std::function<void(Vector2D initPos)> func):ISpell(5.0f),spawnBlast(func){}
-
-        void cast(Entity& e,Vector2D dir){
+        CallbackSpell(float rechargeTime,std::function<void(Vector2D pos)> c):ISpell(rechargeTime),callback(c){}
+        void cast(Entity& e,Vector2D dir) override{
             if(cooldown.isReady()){
-                if(spawnBlast){spawnBlast(e.getComponent<TransformComponent>()->getPos());}
+                
+                if(callback){callback(e.getComponent<TransformComponent>()->getPos());}
                 cooldown.reset();
             }
         }
-        void update(Entity& e,float dt) override{
-            cooldown.update(dt);
-        }
-
         
-
 };

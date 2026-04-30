@@ -51,11 +51,15 @@ namespace SDL{
         inline constexpr SDL_Color Blue  = {0, 0, 255, 255};
         inline constexpr SDL_Color Clear = {0, 0, 0, 0};
         inline constexpr SDL_Color NeonPink    = {255, 0, 255, 255};   
-        inline constexpr SDL_Color Electric    = {0, 255, 255, 255};   
+        inline constexpr SDL_Color Electric    = {255, 255, 30, 255};   
         inline constexpr SDL_Color Toxic       = {57, 255, 20, 255};   
         inline constexpr SDL_Color SunFlower   = {241, 196, 15, 255};  
         inline constexpr SDL_Color Pumpkin     = {211, 84, 0, 255};    
-        inline constexpr SDL_Color voidDust = {75, 0, 130, 70};
+        inline constexpr SDL_Color VoidDust = {75, 0, 130, 50};
+        inline constexpr SDL_Color Ice         ={224, 255, 255, 255};
+        inline constexpr SDL_Color Fire = {255, 80, 0, 255};
+        inline constexpr SDL_Color Player = {0, 255, 128, 255};
+        inline constexpr SDL_Color NeonPurple = {180, 0, 255, 255};
 
     }
     inline void init(){

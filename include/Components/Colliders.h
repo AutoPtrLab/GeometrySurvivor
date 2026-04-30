@@ -1,12 +1,18 @@
 #pragma once
-
+#include "Timer.h"
 #include "Components/ColliderComponent.h"
+#include <functional>
 
 class SpellCollider : public ColliderComponent{
+    private:
+        std::function<void(Entity* e)> spellBehaviour;
+        Timer tick;
+        bool canHit=true;
     public:
 
-        SpellCollider(float radius, CollisionLayer::Type layer,CollisionLayer::Type mask );
+        SpellCollider(float radius, CollisionLayer::Type layer,CollisionLayer::Type mask,std::function<void(Entity* e)> spellBehaviour,float tick=0.25f);
         void onCollision(Entity* e) override;
+        void update(float dt) override;
 
 };
 

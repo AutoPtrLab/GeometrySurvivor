@@ -2,6 +2,7 @@
 #include "SDL_wrapper.h"
 #include "Entity.h"
 #include "Components/TransformComponent.h"
+#include "Components/HealthComponent.h"
 #include <cmath>
 
 
@@ -21,6 +22,8 @@ SimpleSpriteComponent::SimpleSpriteComponent(int radius,int sides,SDL::Color col
 
 void SimpleSpriteComponent::init(){
     tc=entity->getComponent<TransformComponent>();
+    hc=entity->getComponent<HealthComponent>();
+    
     
 }
 
@@ -33,6 +36,13 @@ void SimpleSpriteComponent::render(SDL::RendererPtr r){
     auxColor.a=static_cast<Uint8>(auxColor.a*0.60f);
     drawPolygon(x,y,radius,r,auxColor);
     drawPolygon(x,y,radius*0.70f,r,color); 
+
+    if(hc){
+        if(hc->getStatus() != &Status::None){
+            drawPolygon(x,y,2,r,hc->getStatus()->statusColor);
+        }
+    }
+    
 
 } 
 

@@ -16,5 +16,6 @@ class Timer{
         bool isReady() const ;
         void setReady(); //function so th etimer is already charge
         bool checkTime(float t); //it returns true if the time you pass is more or equal to the time in the timer
+        void startTimer(float t); //if you need to start a timer with a different duration
 
 };

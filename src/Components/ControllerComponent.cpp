@@ -57,6 +57,27 @@ void ControllerComponent::update(float dt){
                 if(auto* spell=this->entity->getComponent<SpellComponent>()){//we create a variable so we dont check twice
                     spell->castSpell(Spell::Blast,dir);     
                 }
+                break;
+            case SDL_SCANCODE_V:
+                if(auto* spell=this->entity->getComponent<SpellComponent>()){//we create a variable so we dont check twice
+                    spell->castSpell(Spell::IceAura,dir);     
+                }
+                break;
+            case SDL_SCANCODE_B:
+                if(auto* spell=this->entity->getComponent<SpellComponent>()){//we create a variable so we dont check twice
+                    spell->castSpell(Spell::FireAura,dir);     
+                }
+                break;
+            case SDL_SCANCODE_N:
+                if(auto* spell=this->entity->getComponent<SpellComponent>()){//we create a variable so we dont check twice
+                    spell->castSpell(Spell::ThunderAura,dir);     
+                }
+                break;
+            case SDL_SCANCODE_A:
+                if(auto* spell=this->entity->getComponent<SpellComponent>()){//we create a variable so we dont check twice
+                    spell->castSpell(Spell::PiercingBullet,dir);     
+                }
+                break;
             default:
                 break;
         }
