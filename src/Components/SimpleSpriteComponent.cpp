@@ -15,7 +15,7 @@ SimpleSpriteComponent::SimpleSpriteComponent(){
 
 }
 
-SimpleSpriteComponent::SimpleSpriteComponent(int radius,int sides,SDL::Color color):radius(radius),sides(sides),color(color),firstColor(color)
+SimpleSpriteComponent::SimpleSpriteComponent(float radius,int sides,SDL::Color color):radius(radius),sides(sides),color(color),firstColor(color)
  ,secColor(color){
     secColor.a /=2;
 }

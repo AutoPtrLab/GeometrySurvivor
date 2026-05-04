@@ -9,6 +9,8 @@ namespace Spell{
     enum  SpellType{
         Bullet,
         PiercingBullet,
+        ShotgunBullet,
+        SpreadBullet,
         Dash,
         Blast,
         IceAura,

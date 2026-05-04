@@ -9,11 +9,11 @@ class TransformComponent;
 
 class SimpleAIComponent: public Component<SimpleAIComponent>{
 
-    private:
+    protected:
        
         Vector2D dir;
         TransformComponent* tc=nullptr; 
-        Faction targetFaction=Faction::None; //mode to aim towards the player or the nearest enemy
+        //Faction targetFaction=Faction::None; //mode to aim towards the player or the nearest enemy
         
         infoAI *info=nullptr;
 
@@ -21,6 +21,6 @@ class SimpleAIComponent: public Component<SimpleAIComponent>{
 
         SimpleAIComponent(infoAI &info);
         void init() override;
-        void update(float dt) override;
+        virtual void update(float dt) override;
 
 };

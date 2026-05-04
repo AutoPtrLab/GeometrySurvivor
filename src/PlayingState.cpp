@@ -9,10 +9,11 @@ PlayingState::PlayingState(std::function <void(StateID)> chaState):State(chaStat
     fact.makePlayer([this](Entity& e){setAsPlayer(e);},[this](){setPlayerNull();},keyPressedVec);
 
     
-    for(int i=0;i<9;i++){
+   /*  for(int i=0;i<9;i++){
         fact.makeRandomEnemy();
-    }
- 
+    } */
+    //fact.makePentagon();
+   fact.makeHeptagon();
  
 }
 

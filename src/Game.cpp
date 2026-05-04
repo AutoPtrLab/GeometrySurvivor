@@ -1,12 +1,15 @@
 #include "Game.h"
 #include "PlayingState.h"
 #include "MenuState.h"
+#include <ctime>
 
 Game::Game():window(SDL::CreateWindow()),renderer(SDL::CreateRenderer(window)){}
 
 Game::~Game()=default;
 
 void Game::init(){
+
+    srand(time(0));//initialize the random function
 
     running=true;
 

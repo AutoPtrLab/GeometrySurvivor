@@ -9,7 +9,7 @@ class SimpleSpriteComponent : public Component<SimpleSpriteComponent>{
 
     private:
 
-        int radius =8; //lenght in pixels
+        float radius =8; //lenght in pixels
         int sides=3;
 
         SDL::Color color={255,0,0,255};//color that we are currently rendering
@@ -26,7 +26,7 @@ class SimpleSpriteComponent : public Component<SimpleSpriteComponent>{
 
     public:
         SimpleSpriteComponent();
-        SimpleSpriteComponent(int radius,int sides,SDL::Color color=SDL::Colors::Red);//size of the geometry shape and what regular polygon is it
+        SimpleSpriteComponent(float radius,int sides,SDL::Color color=SDL::Colors::Red);//size of the geometry shape and what regular polygon is it
         void init() override;
         void render(SDL::RendererPtr r) override;
         void drawPolygon(float x ,float y,float rad,SDL::RendererPtr r,SDL::Color  c);
@@ -34,5 +34,8 @@ class SimpleSpriteComponent : public Component<SimpleSpriteComponent>{
         void setSecColor(){this->color=secColor;}
         void setHitColor(){this->color=hitColor;}
         
+        float getRadius() const{return radius;}
+        void setRadius(float rad){radius=rad;}
+   
 
 };

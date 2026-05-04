@@ -1,18 +1,8 @@
 #pragma once 
 #include "Components/Component.h"
 #include "Components/TransformComponent.h"
+#include "CollisionLayers.h"
 
-namespace CollisionLayer{
-    enum Type : uint16_t{//bit mask to resolve collisions
-
-    None = 0,
-    Player=1<<0,
-    Enemy = 1<<1,
-    Spell= 1<<2
-
-
-};
-};
 
 class TransformComponent;
 class Vector2D;
@@ -36,8 +26,9 @@ class ColliderComponent:public Component<ColliderComponent>{
         virtual void onCollision(Entity* e)=0;
         Vector2D getPos() const{return tc->getPos();}
         float getRadius() const{return radius;}
+        void setRadius(float rad){radius=rad;}
+        
         CollisionLayer::Type getLayer() const{return layer;}
         CollisionLayer::Type getMask() const{return mask;}
-        
         
 }; 

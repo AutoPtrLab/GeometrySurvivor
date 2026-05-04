@@ -6,6 +6,7 @@
 #include "SDL_wrapper.h"
 
 constexpr size_t MAX_COMPONENTS =32;
+enum class Faction{ None,Enemy,Player,Bullet,Spell};//faction of each entity
 
 class BaseComponent;//forward declaration of out interface of component
 

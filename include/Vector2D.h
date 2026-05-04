@@ -68,8 +68,8 @@ struct Vector2D {
             }
         }
         //this functions return the inverse vector
-        Vector2D getInverse() const{
-            return Vector2D(-x,-y);
+        Vector2D operator -() const{
+            return Vector2D{-x,-y};
         }
         Vector2D& Inverse() {
             x=-x;

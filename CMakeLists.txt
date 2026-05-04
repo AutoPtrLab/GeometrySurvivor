@@ -19,6 +19,8 @@ set(LIB_HEADERS
         include/Factory.h
         include/MenuState.h
         include/Spells.h
+        include/RandomUtils.h
+        include/CollisionLayers.h
         #==========COMPONENTS=================
         include/Components/Component.h
         include/Components/TransformComponent.h
@@ -33,6 +35,11 @@ set(LIB_HEADERS
         include/Components/LifeTimeComponent.h
         include/Components/SpellComponent.h
         include/Components/Colliders.h
+        include/Components/ArcherAIComponent.h
+        include/Components/EnemySpellComponent.h
+        include/Components/SquareAIComponent.h
+        include/Components/ScaleComponent.h
+        include/Components/HeptagonAIComponent.h
 )
 
 set(LIB_SRC
@@ -41,8 +48,10 @@ set(LIB_SRC
         src/EntityManager.cpp
         src/ColliderManager.cpp
         src/Timer.cpp
-        src/Factory.cpp
         src/MenuState.cpp
+        src/Factory/Factory.cpp
+        src/Factory/EnemyFactory.cpp
+        src/Factory/SpellFactory.cpp
         #=====COMPONENTS============
         src/Components/TransformComponent.cpp
         src/Components/SimpleSpriteComponent.cpp
@@ -55,6 +64,11 @@ set(LIB_SRC
         src/Components/LifeTimeComponent.cpp
         src/Components/SpellComponent.cpp
         src/Components/Colliders.cpp
+        src/Components/ArcherAIComponent.cpp
+        src/Components/EnemySpellComponent.cpp
+        src/Components/SquareAIComponent.cpp
+        src/Components/ScaleComponent.cpp
+        src/Components/HeptagonAIComponent.cpp
 )
 
 include(FetchContent)
@@ -89,4 +103,10 @@ target_sources(GeometrySurvivorApp
 target_link_libraries(GeometrySurvivorApp
     PRIVATE
     Library
+)
+target_compile_options(GeometrySurvivorApp PRIVATE 
+    -Wall
+    -Wextra
+    -Wconversion
+    -Wshadow
 )

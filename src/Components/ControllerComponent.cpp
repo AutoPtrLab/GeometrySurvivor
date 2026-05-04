@@ -25,7 +25,7 @@ void ControllerComponent::update(float dt){
     float dist=vectorPlayerMouse.getMagnitude();
 
 
-    if(dist <= 1.0f){// if the distance is so small the component just stop(stops the jittering)
+    if(dist <= 5.0f){// if the distance is so small the component just stop(stops the jittering)
         tc->setVel(Vector2D{0,0});
     }else{
         dir=vectorPlayerMouse*(1/dist);
@@ -76,6 +76,16 @@ void ControllerComponent::update(float dt){
             case SDL_SCANCODE_A:
                 if(auto* spell=this->entity->getComponent<SpellComponent>()){//we create a variable so we dont check twice
                     spell->castSpell(Spell::PiercingBullet,dir);     
+                }
+                break;
+            case SDL_SCANCODE_S:
+                if(auto* spell=this->entity->getComponent<SpellComponent>()){//we create a variable so we dont check twice
+                    spell->castSpell(Spell::ShotgunBullet,dir);     
+                }
+                break;
+            case SDL_SCANCODE_D:
+                if(auto* spell=this->entity->getComponent<SpellComponent>()){//we create a variable so we dont check twice
+                    spell->castSpell(Spell::SpreadBullet,dir);     
                 }
                 break;
             default:

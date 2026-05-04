@@ -9,3 +9,7 @@
 #include "Components/SpellComponent.h"
 #include "Components/LifeTimeComponent.h"
 #include "Components/Colliders.h"
+#include "Components/ArcherAIComponent.h"
+#include "Components/EnemySpellComponent.h"
+#include "Components/SquareAIComponent.h"
+#include "Components/ScaleComponent.h"
