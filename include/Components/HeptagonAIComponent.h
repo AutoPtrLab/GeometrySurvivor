@@ -6,10 +6,10 @@
 class HeptagonComponent : public SimpleAIComponent{
 
     private:
-
+        
 
     public:
 
-        
+
 
 };
