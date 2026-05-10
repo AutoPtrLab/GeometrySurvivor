@@ -5,34 +5,31 @@
 class ColliderComponent;
 class SimpleSpriteComponent;
 
+class ScaleComponent : public Component<ScaleComponent> {
 
+  private:
+    float scale = 1.0f; // scale factor
+    float scaleSpeed = 0.0f;
+    float targetScale = 1.0f;
 
-class ScaleComponent : public Component<ScaleComponent>{
+    float origRad = 0.0f;
 
-    private:
+    ColliderComponent *cc;
+    SimpleSpriteComponent *ssc;
 
-        float scale=1.0f ;//scale factor
-        float scaleSpeed=0.0f;
-        float targetScale=1.0f;
+  public:
+    ScaleComponent();
+    ScaleComponent(float targetS, float scaleS);
+    void init() override;
+    void update(float dt) override;
 
-        float origRad=0.0f;
+    void setScale(float sc) {
+        scale = sc;
+        targetScale = sc;
+    }
 
-        ColliderComponent* cc;
-        SimpleSpriteComponent* ssc;
-
-    public:
-
-        ScaleComponent();
-        ScaleComponent(float targetS,float scaleS);
-        void init() override;
-        void update(float dt) override;
-
-        void setScale(float sc){scale=sc;
-                                targetScale=sc;}
-
-        void setGradulScale(float sc,float scaleS=5.0f){
-            targetScale=sc;
-            scaleSpeed=scaleS;
-        }
-
+    void setGradulScale(float sc, float scaleS = 5.0f) {
+        targetScale = sc;
+        scaleSpeed = scaleS;
+    }
 };

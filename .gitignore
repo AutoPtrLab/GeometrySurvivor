@@ -8,8 +8,9 @@ out/
 *.dll
 *.so
 *.dylib
-
+.zed/
 .vscode/
 .cache/
 CMakeCache.txt
 NOTAS.txt
+.clang-format

@@ -1,0 +1,3 @@
+/home/autoptr/Proyects/GeometrySurvivor/CMakeFiles/CMakeScratch/TryCompile-qgmivK/CMakeFiles/cmTC_06466.dir
+/home/autoptr/Proyects/GeometrySurvivor/CMakeFiles/CMakeScratch/TryCompile-qgmivK/CMakeFiles/edit_cache.dir
+/home/autoptr/Proyects/GeometrySurvivor/CMakeFiles/CMakeScratch/TryCompile-qgmivK/CMakeFiles/rebuild_cache.dir

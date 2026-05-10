@@ -1,32 +1,28 @@
 #pragma once
 #include "Components/Component.h"
-#include <array>
 #include "Spells.h"
+#include <array>
 
-namespace EnemySpell{
-    enum  SpellSlot{
-  
-        Primary,
-        Secondary,
-        Special
-    };
+namespace EnemySpell {
+enum SpellSlot {
+
+    Primary,
+    Secondary,
+    Special
+};
 }
-constexpr size_t MAX_ENEMY_SPELLS =3;
-class EnemySpellComponent : public Component<EnemySpellComponent>{
+constexpr size_t MAX_ENEMY_SPELLS = 3;
+class EnemySpellComponent : public Component<EnemySpellComponent> {
 
-    private:
+  private:
+    std::array<std::unique_ptr<ISpell>, MAX_ENEMY_SPELLS> spells;
 
-        std::array<std::unique_ptr<ISpell>,MAX_ENEMY_SPELLS> spells;
+  public:
+    EnemySpellComponent();
 
-    public:
+    void addSpell(EnemySpell::SpellSlot slot, std::unique_ptr<ISpell> ptr); // the making of the spells is made in the factory
+    void castSpell(EnemySpell::SpellSlot slot, Vector2D pos);
 
-        EnemySpellComponent();
-
-        void addSpell(EnemySpell::SpellSlot slot,std::unique_ptr<ISpell> ptr);//the making of the spells is made in the factory 
-        void castSpell(EnemySpell::SpellSlot slot,Vector2D dir);
-
-        void update(float dt) override;
-        void render(SDL::RendererPtr r) override;
-
-
+    void update(float dt) override;
+    void render(SDL::RendererPtr r) override;
 };

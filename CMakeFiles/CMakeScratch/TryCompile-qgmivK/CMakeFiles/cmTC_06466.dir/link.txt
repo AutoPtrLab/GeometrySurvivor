@@ -1,0 +1,1 @@
+/usr/bin/cc  -idirafter "/home/autoptr/Proyects/GeometrySurvivor/_deps/sdl2-src/src/video/khronos"  -D_GNU_SOURCE=1 CMakeFiles/cmTC_06466.dir/CheckSymbolExists.c.o -o cmTC_06466 

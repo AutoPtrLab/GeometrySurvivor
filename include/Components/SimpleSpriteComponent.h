@@ -1,41 +1,37 @@
 #include "Component.h"
 #include "Vector2D.h"
 
-class TransformComponent;//forward declaration of the transformComponent
+class TransformComponent; // forward declaration of the transformComponent
 class HealthComponent;
 
+class SimpleSpriteComponent : public Component<SimpleSpriteComponent> {
+  private:
+    float radius = 8; // lenght in pixels
+    int sides = 3;
 
-class SimpleSpriteComponent : public Component<SimpleSpriteComponent>{
+    SDL::Color color = {255, 0, 0, 255}; // color that we are currently rendering
 
-    private:
+    SDL::Color firstColor = {255, 0, 0, 255};
+    SDL::Color secColor = {255, 0, 0, 120};
+    SDL::Color hitColor = {255, 255, 255, 220}; // white
 
-        float radius =8; //lenght in pixels
-        int sides=3;
+    TransformComponent *tc = nullptr;
+    HealthComponent *hc = nullptr;
 
-        SDL::Color color={255,0,0,255};//color that we are currently rendering
+    Vector2D prevPos;
 
-        SDL::Color firstColor={255,0,0,255};
-        SDL::Color secColor={255,0,0,120};
-        SDL::Color hitColor={255, 255, 255, 220}; //white 
+  public:
+    SimpleSpriteComponent();
+    SimpleSpriteComponent(float radius, int sides,
+                          SDL::Color color = SDL::Colors::Red); // size of the geometry shape and
+                                                                // what regular polygon is it
+    void init() override;
+    void render(SDL::RendererPtr r) override;
+    void drawPolygon(float x, float y, float rad, SDL::RendererPtr r, SDL::Color c);
+    void setFirstColor() { this->color = firstColor; }
+    void setSecColor() { this->color = secColor; }
+    void setHitColor() { this->color = hitColor; }
 
-        TransformComponent *tc=nullptr;
-        HealthComponent *hc=nullptr;
-
-        Vector2D prevPos;
-
-
-    public:
-        SimpleSpriteComponent();
-        SimpleSpriteComponent(float radius,int sides,SDL::Color color=SDL::Colors::Red);//size of the geometry shape and what regular polygon is it
-        void init() override;
-        void render(SDL::RendererPtr r) override;
-        void drawPolygon(float x ,float y,float rad,SDL::RendererPtr r,SDL::Color  c);
-        void setFirstColor(){this->color=firstColor;}
-        void setSecColor(){this->color=secColor;}
-        void setHitColor(){this->color=hitColor;}
-        
-        float getRadius() const{return radius;}
-        void setRadius(float rad){radius=rad;}
-   
-
+    float getRadius() const { return radius; }
+    void setRadius(float rad) { radius = rad; }
 };

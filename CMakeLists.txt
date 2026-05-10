@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.23)
 project(GeometrySurvivor)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(APP_SRC
         src/main.cpp
@@ -39,7 +42,8 @@ set(LIB_HEADERS
         include/Components/EnemySpellComponent.h
         include/Components/SquareAIComponent.h
         include/Components/ScaleComponent.h
-        include/Components/HeptagonAIComponent.h
+        include/Components/MageAIComponent.h
+        include/Components/SummonerAIComponent.h
 )
 
 set(LIB_SRC
@@ -68,7 +72,8 @@ set(LIB_SRC
         src/Components/EnemySpellComponent.cpp
         src/Components/SquareAIComponent.cpp
         src/Components/ScaleComponent.cpp
-        src/Components/HeptagonAIComponent.cpp
+        src/Components/MageAIComponent.cpp
+        src/Components/SummonerAIComponent.cpp
 )
 
 include(FetchContent)
@@ -104,7 +109,7 @@ target_link_libraries(GeometrySurvivorApp
     PRIVATE
     Library
 )
-target_compile_options(GeometrySurvivorApp PRIVATE 
+target_compile_options(GeometrySurvivorApp PRIVATE
     -Wall
     -Wextra
     -Wconversion

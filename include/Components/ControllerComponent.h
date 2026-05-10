@@ -2,27 +2,19 @@
 #include "Component.h"
 #include "Vector2D.h"
 #include "vector"
-#include "Timer.h"
 
-class TransformComponent; 
-class ControllerComponent : public Component<ControllerComponent>{
+class TransformComponent;
+class ControllerComponent : public Component<ControllerComponent> {
 
-    private:
-        Vector2D dir;//vector betweeen the character and the mouse cursor
+  private:
+    Vector2D dir; // vector betweeen the character and the mouse cursor
 
-        std::vector<SDL_Event>& keyPressedVec;
-        
-        TransformComponent *tc=nullptr;
+    std::vector<SDL_Event> &keyPressedVec;
 
-  
+    TransformComponent *tc = nullptr;
 
-    public:
-        
-        ControllerComponent(std::vector<SDL_Event>& keyPressedVec);
-        void init() override;
-        void update(float dt) override;
-        
-
-   
-
+  public:
+    ControllerComponent(std::vector<SDL_Event> &keyPressedVec);
+    void init() override;
+    void update(float dt) override;
 };

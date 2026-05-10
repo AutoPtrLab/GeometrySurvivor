@@ -3,18 +3,11 @@
 #include "SimpleAIComponent.h"
 #include "infoAI.h"
 
-
-
 class ArcherAIComponent : public SimpleAIComponent {
 
-    private:
+  private:
+  public:
+    ArcherAIComponent(infoAI &info);
 
-        
-
-    public:
-
-        ArcherAIComponent(infoAI &info);
-
-        void update(float dt) override;
-
+    void update(float dt) override;
 };
