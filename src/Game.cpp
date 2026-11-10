@@ -4,8 +4,10 @@
 #include "ShopState.h"
 #include "State.h"
 #include <ctime>
+
 #include <memory>
 
+int score = 0;
 Game::Game() : window(SDL::CreateWindow()), renderer(SDL::CreateRenderer(window)) {}
 
 Game::~Game() = default;
@@ -66,7 +68,6 @@ void Game::updateState() {
 
         switch (nextState) {
         case StateID::Close:
-
             running = false;
             break;
         case StateID::Playing:
@@ -75,8 +76,10 @@ void Game::updateState() {
             break;
         case StateID::Menu:
             state = (std::make_unique<MenuState>(stateCallback, gameData));
+            break;
         case StateID::Shop:
             state = (std::make_unique<ShopState>(stateCallback, gameData));
+            break;
         default:
             break;
         }

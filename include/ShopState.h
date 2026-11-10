@@ -5,9 +5,6 @@
 #include <string_view>
 #include <vector>
 
-// possibles upgrades
-constexpr std::string_view s = "hola";
-
 class ShopState : public State {
   private:
     bool waitingInput = false;

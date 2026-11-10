@@ -36,6 +36,7 @@ Entity &EntityManager::addEntity(int depth) {
 }
 
 void EntityManager::addBufferEntity(std::unique_ptr<Entity> e) {
+    // printf("%d\n", static_cast<int>(updateVec.size()));
     bufferVec.push_back(std::move(e));
 }
 

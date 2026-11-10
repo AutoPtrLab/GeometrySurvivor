@@ -1,6 +1,14 @@
 build/
 out/
-
+build/
+CMakeFiles/
+_deps/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+GeometrySurvivor
+assets/
 
 *.exe
 *.o

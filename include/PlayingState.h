@@ -3,6 +3,7 @@
 #include "ColliderManager.h"
 #include "EntityManager.h"
 #include "Factory.h"
+#include "SpellRegistry.h"
 #include "State.h"
 #include "Timer.h"
 #include "infoAI.h"

@@ -40,6 +40,7 @@ void ControllerComponent::update(float dt) {
         case SDL_SCANCODE_X:
 
             if (auto *spell = this->entity->getComponent<SpellComponent>()) { // we create a variable so we dont check twice
+
                 spell->castSpell(Spell::Secondary, dir);
             }
 

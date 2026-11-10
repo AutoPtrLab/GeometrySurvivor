@@ -4,6 +4,8 @@
 #include "SDL_wrapper.h"
 #include "State.h"
 
+extern int score;
+
 class Game {
 
   private:

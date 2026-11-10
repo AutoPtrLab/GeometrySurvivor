@@ -1,8 +1,14 @@
 #include "PlayingState.h"
 #include "Components/ComponentsList.h"
+#include "Components/HealthComponent.h"
+#include "Components/SpellComponent.h"
+#include "Game.h"
 #include "GameData.h"
 #include "RandomUtils.h"
 #include "SDL_scancode.h"
+#include "SpellRegistry.h"
+#include "State.h"
+#include <cstdio>
 
 PlayingState::PlayingState(std::function<void(StateID)> chaState, GameData &gData)
     : State(chaState, gData), cManager(eManager.getUpdateVec()), fact(eManager, aiContext, gData) {
@@ -41,8 +47,16 @@ void PlayingState::update(float dt) {
     eManager.flushBuffer();
     // update AIcontext
     aiContext.isPlayerAlive = static_cast<bool>(getPlayer());
+
     if (getPlayer()) {
         aiContext.playerPos = getPlayer()->getComponent<TransformComponent>()->getPos();
+
+    } else {
+        changeState(StateID::Close);
+
+        printf("SCORE: %d\n", score);
+        printf("YOU SURVIVED TILL THE %d WAVE\n", this->gameData.wave);
+        return;
     }
     eManager.update(dt);
     cManager.update();

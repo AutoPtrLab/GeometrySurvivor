@@ -94,20 +94,23 @@ Entity &Factory::addEntity(int depth) {
 }
 
 void Factory::makePlayer(std::function<void(Entity &e)> funcCreate, std::function<void()> funcDestroy, std::vector<SDL::Event> &keyPressedVec) {
-    // ESTO ES UNA PUTA MIERDA; HACER UN REGISTER DE SPELLS QUE TENGA TODA LA INFO
-    // Y SOLO PROEGUNTAS Y QUE EL BLACKBOAR TENGA UNA REFERENCIA SUYA Y PUNTO
-    //  1. Da
+
     auto &e = addEntity(2);
     e.addComponent<TransformComponent>(Vector2D{400, 20}, 100.0f);
     e.addComponent<SimpleSpriteComponent>(8, 5, SDL::Colors::Player);
     e.addComponent<ControllerComponent>(keyPressedVec);
     e.addComponent<PlayerCollider>(8.0f, CollisionLayer::Player, CollisionLayer::None);
-    e.addComponent<HealthComponent>(100);
+    e.addComponent<HealthComponent>(100, 0.7f);
     e.addComponent<PlayerComponent>(funcCreate, funcDestroy);
 
     e.addComponent<SpellComponent>().addSpell(Spell::Primary, std::make_unique<BulletSpell>(0.35f, 10, [this](Vector2D initpos, Vector2D dir, int damage) {
                                                   this->makeBullet(initpos, dir, 10, CollisionLayer::Enemy);
                                               }));
+
+    // gameData.spellReg.equipSpell(static_cast<Spell::SpellSlot>(Spell::Primary), 1);
+    // gameData.spellReg.equipSpell(static_cast<Spell::SpellSlot>(Spell::Secondary), 6);
+    // gameData.spellReg.equipSpell(static_cast<Spell::SpellSlot>(Spell::Special), 3);
+    // gameData.spellReg.equipSpell(static_cast<Spell::SpellSlot>(Spell::Special2), 5);
     equipSpellToSlot(e, gameData, this, Spell::Primary);
     equipSpellToSlot(e, gameData, this, Spell::Secondary);
     equipSpellToSlot(e, gameData, this, Spell::Special);

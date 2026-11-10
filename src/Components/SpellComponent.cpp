@@ -8,8 +8,9 @@ void SpellComponent::addSpell(Spell::SpellSlot slot, std::unique_ptr<ISpell> ptr
 }
 
 void SpellComponent::castSpell(Spell::SpellSlot slot, Vector2D pos) {
-    if (auto &spell = spells[slot])
+    if (auto &spell = spells[slot]) {
         spell->cast(*this->entity, pos);
+    }
 }
 
 void SpellComponent::update(float dt) {
