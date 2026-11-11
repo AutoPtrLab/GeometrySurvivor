@@ -15,7 +15,8 @@ PlayingState::PlayingState(std::function<void(StateID)> chaState, GameData &gDat
 
     fact.makePlayer([this](Entity &e) { setAsPlayer(e); }, [this]() { setPlayerNull(); }, keyPressedVec);
 
-    fact.makeHexagon();
+    // fact.makeHexagon();
+    startWave();
 }
 
 PlayingState::~PlayingState() = default;

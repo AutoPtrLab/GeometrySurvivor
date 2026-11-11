@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "GameData.h"
 #include "MenuState.h"
 #include "PlayingState.h"
 #include "ShopState.h"
@@ -44,6 +45,7 @@ void Game::init() {
 
         accumulator += dt;
         while (accumulator >= FIXED_DT) {
+            // printf("%d\n", this->gameData.wave);
             state->update(FIXED_DT);
             accumulator -= FIXED_DT;
         }
@@ -71,7 +73,6 @@ void Game::updateState() {
             running = false;
             break;
         case StateID::Playing:
-            // if we are playing we destoy the menu state
             state = (std::make_unique<PlayingState>(stateCallback, gameData));
             break;
         case StateID::Menu:
