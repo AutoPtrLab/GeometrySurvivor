@@ -2,7 +2,7 @@
 
 A top-down geometrical survival game. Move with the mouse, fire your spells, survive wave after wave of geometric enemies and upgrade your arsenal between rounds.
 
-<!-- Paste your gameplay video/GIF here (drag and drop it into the GitHub editor) -->
+![Geometry Survivor gameplay](gs_demo.gif)
 
 > **Status:** completed (v1.0). The project is finished and no longer actively maintained.
 
