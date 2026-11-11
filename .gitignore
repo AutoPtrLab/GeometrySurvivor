@@ -7,7 +7,9 @@ CMakeCache.txt
 cmake_install.cmake
 Makefile
 compile_commands.json
-GeometrySurvivor
+GeometrySurvivorApp
+clang-format
+libLibrary.a
 assets/
 
 *.exe
