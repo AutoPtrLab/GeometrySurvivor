@@ -26,7 +26,7 @@ Every so often the **Magic Shop** opens. There you pick either a new spell (or a
 | Key | Action |
 | --- | --- |
 | **Z / X / C / V** | Equip the offered spell in that slot (and level it up) |
-| **5** | Upgrade the offered stat instead |
+| **B** | Upgrade the offered stat instead |
 
 > The menu and the shop are printed in the **terminal**, so launch the game from one. The key presses go to the game window.
 
